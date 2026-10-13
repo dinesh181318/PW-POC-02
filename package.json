@@ -1,0 +1,25 @@
+{
+  "name": "playwright-poc-banking",
+  "version": "1.0.0",
+  "description": "Playwright Proof of Concept for TrustBank Banking Domain Application (PW-POC-02)",
+  "author": "Dinesh K",
+  "license": "ISC",
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:smoke": "playwright test tests/smoke",
+    "test:regression": "playwright test tests/regression",
+    "test:negative": "playwright test tests/negative",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^22.14.0",
+    "typescript": "^5.8.0"
+  }
+}
