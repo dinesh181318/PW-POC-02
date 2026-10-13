@@ -38,6 +38,12 @@ export class TransferPage extends BasePage {
   readonly modeRtgsButton: Locator;
   readonly reviewTransferButton: Locator;
 
+  // Validation error messages
+  readonly errorFromAccount: Locator;
+  readonly errorPayee: Locator;
+  readonly errorAmount: Locator;
+  readonly errorMode: Locator;
+
   // Review step
   readonly reviewSummary: Locator;
   readonly reviewFrom: Locator;
@@ -73,6 +79,11 @@ export class TransferPage extends BasePage {
     this.modeNeftButton = page.getByTestId('mode-neft');
     this.modeRtgsButton = page.getByTestId('mode-rtgs');
     this.reviewTransferButton = page.getByTestId('review-transfer');
+
+    this.errorFromAccount = page.getByTestId('error-from-account');
+    this.errorPayee = page.getByTestId('error-payee');
+    this.errorAmount = page.getByTestId('error-amount');
+    this.errorMode = page.getByTestId('error-mode');
 
     this.reviewSummary = page.getByTestId('review-summary');
     this.reviewFrom = page.getByTestId('review-from');
@@ -137,6 +148,10 @@ export class TransferPage extends BasePage {
     if (request.mode) {
       await this.selectMode(request.mode);
     }
+  }
+
+  async submitReview(): Promise<void> {
+    await this.reviewTransferButton.click();
   }
 
   async clickReviewTransfer(): Promise<void> {

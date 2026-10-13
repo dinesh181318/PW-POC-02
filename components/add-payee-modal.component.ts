@@ -18,6 +18,8 @@ export class AddPayeeModalComponent {
   readonly savePayeeButton: Locator;
   readonly ifscError: Locator;
   readonly confirmAccountError: Locator;
+  readonly nameError: Locator;
+  readonly accountError: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -30,6 +32,8 @@ export class AddPayeeModalComponent {
     this.savePayeeButton = page.getByTestId('save-payee');
     this.ifscError = page.getByTestId('error-payee-ifsc');
     this.confirmAccountError = page.getByTestId('error-payee-confirm-account');
+    this.nameError = page.getByTestId('error-payee-name');
+    this.accountError = page.getByTestId('error-payee-account');
   }
 
   async isVisible(): Promise<boolean> {

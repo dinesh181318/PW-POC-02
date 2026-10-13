@@ -12,6 +12,7 @@
     "test:smoke": "playwright test tests/smoke",
     "test:regression": "playwright test tests/regression",
     "test:negative": "playwright test tests/negative",
+    "test:validation": "playwright test tests/validation",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "report": "playwright show-report",

@@ -3,7 +3,7 @@ import { BankTestData } from '../../test-data/bank-data';
 import { DataGenerator } from '../../utils/data-generator';
 
 test.describe('TrustBank - Critical Workflow E2E Smoke Suite', () => {
-  test('TC_E2E_01: Complete critical banking journey: Login → Dashboard → Add Beneficiary → Transfer Funds → OTP → Receipt → Statement Verification', async ({
+  test('TC_POS_04: Critical E2E Workflow 1: Complete banking journey (Login → Dashboard → Add Beneficiary → Transfer Funds → OTP → Receipt → Statement Verification)', async ({
     loginPage,
     dashboardPage,
     transferPage,

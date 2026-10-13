@@ -3,7 +3,7 @@ import { BankTestData } from '../../test-data/bank-data';
 import { DataGenerator } from '../../utils/data-generator';
 
 test.describe('TrustBank - Regression Suite - Workflow Variations & Filtering', () => {
-  test('TC_REG_01: Transfer funds using NEFT mode to existing payee and verify in statement', async ({
+  test('TC_POS_05: Critical E2E Workflow 2: Transfer funds using NEFT mode to existing payee and verify in statement', async ({
     authenticatedSession,
   }) => {
     const { transferPage, historyPage } = authenticatedSession;
@@ -42,7 +42,45 @@ test.describe('TrustBank - Regression Suite - Workflow Variations & Filtering', 
     await historyPage.verifyTransactionPresent(receipt.referenceId);
   });
 
-  test('TC_REG_02: Edit transfer details from Review screen before OTP confirmation', async ({
+  test('TC_POS_06: Critical E2E Workflow 3: Transfer funds sourced from Current Account with OTP confirmation and receipt validation', async ({
+    authenticatedSession,
+  }) => {
+    const { transferPage, historyPage } = authenticatedSession;
+
+    await transferPage.goto();
+
+    const amount = 650.0;
+    const remarks = DataGenerator.generateRemarks('Current Acc Payment');
+
+    // Select Current account (index 2)
+    await transferPage.fillTransferForm({
+      fromAccountIndex: 2, // Current account
+      payeeIndex: 2, // City Electricity Board
+      amount: amount,
+      remarks: remarks,
+      mode: 'IMPS',
+    });
+
+    await transferPage.clickReviewTransfer();
+    await transferPage.verifyReviewDetails({
+      mode: 'IMPS',
+      amount: amount,
+    });
+
+    await transferPage.clickConfirmTransfer();
+    const receipt = await transferPage.submitOtpAndCompleteTransfer(
+      BankTestData.transfers.validTransfer.otp
+    );
+
+    expect(receipt.referenceId).toBeTruthy();
+    expect(receipt.details).toContain(remarks);
+
+    // Verify presence in transaction ledger
+    await transferPage.header.goToHistory();
+    await historyPage.verifyTransactionPresent(receipt.referenceId);
+  });
+
+  test('TC_POS_07: Edit transfer details from Review screen before OTP confirmation', async ({
     authenticatedSession,
   }) => {
     const { transferPage } = authenticatedSession;
@@ -72,7 +110,7 @@ test.describe('TrustBank - Regression Suite - Workflow Variations & Filtering', 
     await transferPage.verifyReviewDetails({ amount: 450.0 });
   });
 
-  test('TC_REG_03: Dynamic transaction table filtering and CSV export check', async ({
+  test('TC_POS_08: Dynamic transaction table filtering by Credits only and Debits only', async ({
     authenticatedSession,
   }) => {
     const { historyPage } = authenticatedSession;
@@ -98,4 +136,3 @@ test.describe('TrustBank - Regression Suite - Workflow Variations & Filtering', 
     expect(await historyPage.transactionRows.count()).toBeGreaterThan(0);
   });
 });
-

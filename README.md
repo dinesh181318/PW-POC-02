@@ -59,9 +59,11 @@ poc-bank-app/
 │   ├── regression/
 │   │   ├── account-dashboard.spec.ts      # Recent transactions table & shortcuts
 │   │   └── e2e-workflow.spec.ts           # NEFT mode, review edits, history filters
-│   └── smoke/
-│       ├── critical-flow.spec.ts          # Complete E2E business journey
-│       └── login.spec.ts                  # Two-step login & session logout
+│   ├── smoke/
+│   │   ├── critical-flow.spec.ts          # Complete E2E business journey
+│   │   └── login.spec.ts                  # Two-step login & session logout
+│   └── validation/
+│       └── business-rules.spec.ts         # Mandatory fields, daily limits, RBAC rules
 ├── utils/
 │   ├── currency-utils.ts             # Rupee currency parsing & formatting
 │   └── data-generator.ts             # Dynamic test data generator
@@ -98,13 +100,14 @@ npx playwright install --with-deps chromium firefox webkit
 
 | Command | Description |
 | :--- | :--- |
-| `npm test` | Runs the full test suite across all configured browsers in parallel |
+| `npm test` | Runs the full 23-test suite across all configured browsers in parallel |
 | `npm run test:chromium` | Runs all tests using the Chromium browser engine |
 | `npm run test:firefox` | Runs all tests using Firefox |
 | `npm run test:webkit` | Runs all tests using WebKit (Safari engine) |
 | `npm run test:smoke` | Executes the smoke test suite (Login & Critical E2E Flow) |
 | `npm run test:regression` | Executes the regression suite (Workflow variations & dashboard) |
 | `npm run test:negative` | Executes the negative test suite (Lockout, IFSC, bad OTP) |
+| `npm run test:validation` | Executes the business rules and validation suite (Mandatory fields, limits, RBAC) |
 | `npm run test:headed` | Executes tests in headed mode for visual observation |
 | `npm run test:debug` | Launches Playwright Inspector for step-by-step debugging |
 | `npm run report` | Opens the interactive Playwright HTML Execution Report |
@@ -138,11 +141,20 @@ The repository includes a ready-to-run GitHub Actions configuration in `.github/
 ## 7. Submission Checklist Status
 
 - [x] Application/domain overview completed (`docs/APPLICATION_DOMAIN_UNDERSTANDING.md`)
-- [x] Critical workflow documented (`docs/CRITICAL_WORKFLOW.md`)
-- [x] Test scenarios documented and automated (14 tests across smoke, regression, negative)
+- [x] Critical workflow documented with 3 full journeys (`docs/CRITICAL_WORKFLOW.md`)
+- [x] 23 test scenarios documented and automated (11 Positive, 6 Negative, 6 Validation)
 - [x] Playwright project configured (`playwright.config.ts`, `tsconfig.json`, `package.json`)
 - [x] Page Objects and reusable components created (`pages/`, `components/`)
-- [x] Test data separated from test logic (`test-data/bank-data.ts`)
+- [x] Test data separated from test logic (`test-data/bank-data.ts`, `utils/data-generator.ts`)
+- [x] 11 Positive scenarios automated (`tests/smoke/`, `tests/regression/`)
+- [x] 6 Negative scenarios automated (`tests/negative/`)
+- [x] 6 Validation / Boundary scenarios automated (`tests/validation/`)
+- [x] Cross-browser execution verified (Chromium, Firefox, WebKit)
+- [x] Reports, trace capture, and failure evidence configured
+- [x] README completed with setup, execution, and architectural details
+- [x] CI execution pipeline created (`.github/workflows/playwright.yml`)
+- [x] POC summary and technical findings documented (`docs/POC_SUMMARY.md`)
+- [x] POC walkthrough/demo script prepared (`docs/DEMO_WALKTHROUGH_SCRIPT.md`)
 - [x] Positive scenarios automated (`tests/smoke/`, `tests/regression/`)
 - [x] Negative and validation scenarios automated (`tests/negative/`)
 - [x] Cross-browser execution verified (Chromium, Firefox, WebKit)

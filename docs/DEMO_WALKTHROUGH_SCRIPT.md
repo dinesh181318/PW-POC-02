@@ -139,3 +139,4 @@ npm run report
 | **Why not store authentication state globally for all tests?** | For regression tests, we use the `authenticatedSession` fixture. For negative and lockout tests, we deliberately start with clean, isolated sessions to verify the login state machine. |
 | **How do you handle cross-browser differences?** | Desktop configurations are defined in `playwright.config.ts` using `devices['Desktop Chrome']`, `devices['Desktop Firefox']`, and `devices['Desktop Safari']`. |
 | **Where are the CI workflows maintained?** | In `.github/workflows/playwright.yml`, running parallel workers and publishing HTML reports as artifacts. |
+

@@ -63,13 +63,14 @@ export class LoginPage extends BasePage {
   async login(
     customerId: string,
     password: string,
-    securityAnswer: string
+    securityAnswer: string,
+    expectedUrlPattern: RegExp = /.*\/apps\/bank\/(dashboard|approvals)/
   ): Promise<void> {
     await this.fillStep1(customerId, password);
     await this.submitStep1();
     await this.fillStep2(securityAnswer);
     await this.submitStep2();
-    await expect(this.page).toHaveURL(/.*\/apps\/bank\/dashboard/);
+    await expect(this.page).toHaveURL(expectedUrlPattern);
   }
 
   async unlockIfLocked(): Promise<void> {

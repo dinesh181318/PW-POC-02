@@ -1,7 +1,8 @@
 import { test, expect } from '../../fixtures/bank-fixtures';
+import { BankTestData } from '../../test-data/bank-data';
 
 test.describe('TrustBank - Regression Suite - Account Dashboard & Dynamic Tables', () => {
-  test('TC_REG_04: Verify dynamic recent transactions table structure and data format', async ({
+  test('TC_POS_09: Verify dynamic recent transactions table structure and data format', async ({
     authenticatedSession,
   }) => {
     const { dashboardPage } = authenticatedSession;
@@ -18,7 +19,7 @@ test.describe('TrustBank - Regression Suite - Account Dashboard & Dynamic Tables
     }
   });
 
-  test('TC_REG_05: Verify quick action shortcuts on dashboard', async ({
+  test('TC_POS_10: Verify quick action shortcuts on dashboard', async ({
     authenticatedSession,
     page,
   }) => {
@@ -41,5 +42,38 @@ test.describe('TrustBank - Regression Suite - Account Dashboard & Dynamic Tables
     await expect(page).toHaveURL(/.*\/apps\/bank\/transfer\?addPayee=1/);
     await expect(dashboardPage.addPayeeModal.modal).toBeVisible();
   });
-});
 
+  test('TC_POS_11: Verify receipt navigation shortcuts return to transfer and dashboard', async ({
+    authenticatedSession,
+    page,
+  }) => {
+    const { transferPage } = authenticatedSession;
+
+    await transferPage.goto();
+
+    // Execute a quick valid transfer to land on receipt
+    await transferPage.fillTransferForm({
+      fromAccountIndex: 1,
+      payeeIndex: 1,
+      amount: 100.0,
+      remarks: 'Receipt nav test',
+      mode: 'IMPS',
+    });
+    await transferPage.clickReviewTransfer();
+    await transferPage.clickConfirmTransfer();
+    await transferPage.submitOtpAndCompleteTransfer(BankTestData.transfers.validTransfer.otp);
+
+    // Verify receipt actions
+    await expect(transferPage.newTransferLink).toBeVisible();
+    await expect(transferPage.backToDashboardLink).toBeVisible();
+
+    // Click "New transfer" link
+    await transferPage.newTransferLink.click();
+    await expect(page).toHaveURL(/.*\/apps\/bank\/transfer/);
+    await expect(transferPage.transferForm).toBeVisible();
+
+    // Return to history/dashboard
+    await transferPage.header.goToDashboard();
+    await expect(page).toHaveURL(/.*\/apps\/bank\/dashboard/);
+  });
+});
