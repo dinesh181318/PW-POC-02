@@ -84,3 +84,4 @@ flowchart TD
   - Row columns match: Date, Reference ID, Description snippet, Account type, and Debit amount (`−₹750.00`).
   - Search by description filters rows dynamically.
   - Type filters (Credits only vs Debits only) correctly isolate positive and negative line items.
+

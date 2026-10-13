@@ -45,3 +45,4 @@ Retail banking web applications provide self-service portals for customers to ma
    - High-privilege role used for approvals and administrative audit capabilities.
 3. **Buggy Build Mode (`100200399`):**
    - Purpose-built test target with seeded defects for exploratory bug hunting.
+

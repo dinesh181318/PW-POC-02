@@ -65,3 +65,4 @@ This Proof of Concept demonstrates an enterprise-grade automated test architectu
 - **Visual Regression Testing:** Integrate Playwright snapshot testing (`toHaveScreenshot()`) for the transaction receipt and dashboard charts.
 - **Network Interception & Chaos Testing:** Mock HTTP error states (500 Internal Server Error, timeout latency) during OTP processing using `page.route()`.
 - **API Pre-seeding:** If REST API endpoints are exposed for beneficiary creation, seed test data via `request` context to optimize E2E execution speed.
+

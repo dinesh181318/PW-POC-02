@@ -150,3 +150,4 @@ The repository includes a ready-to-run GitHub Actions configuration in `.github/
 - [x] README completed with setup, execution, and architectural details
 - [x] CI execution pipeline created (`.github/workflows/playwright.yml`)
 - [x] POC summary and technical findings documented (`docs/POC_SUMMARY.md`)
+
