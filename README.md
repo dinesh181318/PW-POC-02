@@ -84,8 +84,8 @@ poc-bank-app/
 ### Installation:
 ```bash
 # Clone the repository
-git clone https://github.com/dineshk/playwright-poc-banking.git
-cd playwright-poc-banking
+git clone https://github.com/dinesh181318/PW-POC-02.git
+cd PW-POC-02
 
 # Install dependencies
 npm install
