@@ -66,6 +66,7 @@ export class LoginPage extends BasePage {
     securityAnswer: string,
     expectedUrlPattern: RegExp = /.*\/apps\/bank\/(dashboard|approvals)/
   ): Promise<void> {
+    await this.unlockIfLocked();
     await this.fillStep1(customerId, password);
     await this.submitStep1();
     await this.fillStep2(securityAnswer);
