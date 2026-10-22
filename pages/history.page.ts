@@ -88,6 +88,7 @@ export class HistoryPage extends BasePage {
     }
   }
 
+  //download csv
   async downloadCsv(): Promise<string | null> {
     try {
       const downloadPromise = this.page.waitForEvent('download', { timeout: 10000 });
