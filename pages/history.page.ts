@@ -19,14 +19,14 @@ export class HistoryPage extends BasePage {
     super(page);
     this.pageTitle = page.getByTestId('page-title');
     this.downloadStatementButton = page.getByTestId('download-statement');
-    this.accountSelect = page.getByTestId('history-account');
+    this.accountSelect = page.getByTestId('history-account1');
     this.typeSelect = page.getByTestId('history-type');
     this.rangeSelect = page.getByTestId('history-range');
     this.searchInput = page.getByTestId('history-search');
     this.transactionCount = page.getByTestId('history-count');
     this.historyTable = page.getByTestId('history-table');
     this.transactionRows = page.getByTestId('history-row');
-    this.pagePrevButton = page.getByTestId('page-prev1');
+    this.pagePrevButton = page.getByTestId('page-prev');
     this.pageInfo = page.getByTestId('page-info');
     this.pageNextButton = page.getByTestId('page-next');
   }
