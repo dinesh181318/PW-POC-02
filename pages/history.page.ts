@@ -22,7 +22,7 @@ export class HistoryPage extends BasePage {
     this.accountSelect = page.getByTestId('history-account');
     this.typeSelect = page.getByTestId('history-type');
     this.rangeSelect = page.getByTestId('history-range');
-    this.searchInput = page.getByTestId('search');
+    this.searchInput = page.getByTestId('history-search');
     this.transactionCount = page.getByTestId('history-count');
     this.historyTable = page.getByTestId('history-table');
     this.transactionRows = page.getByTestId('history-row');
