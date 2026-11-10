@@ -26,7 +26,7 @@ export class HistoryPage extends BasePage {
     this.transactionCount = page.getByTestId('history-count');
     this.historyTable = page.getByTestId('history-table');
     this.transactionRows = page.getByTestId('history-row');
-    this.pagePrevButton = page.getByTestId('page-prev');
+    this.pagePrevButton = page.getByTestId('page-prev1');
     this.pageInfo = page.getByTestId('page-info');
     this.pageNextButton = page.getByTestId('page-next');
   }
